@@ -15,11 +15,18 @@
       if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition((position) => {
           console.log(position.coords.latitude, position.coords.longitude);
+          alert(
+            "유저번호" +
+              window.userId +
+              "\n위도" +
+              position.coords.latitude +
+              "\n경도" +
+              position.coords.longitude
+          );
         });
       } else {
         console.log("위치사용");
       }
-      alert(window.userId);
     </script>
   </head>
   <body>
