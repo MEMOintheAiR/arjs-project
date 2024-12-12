@@ -1,5 +1,5 @@
 import * as THREE from "../node_modules/three/build/three.module";
-import * as LocAR from "../node_modules/locar/dist/locar.umd";
+import * as LocAR from "../node_modules/locar/dist/locar.es";
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
