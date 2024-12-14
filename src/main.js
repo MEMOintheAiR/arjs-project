@@ -1,5 +1,5 @@
-import * as THREE from "/node_modules/three/build/three.module.js";
-import * as LocAR from "/node_modules/locar/dist/locar.es.js";
+import * as THREE from "three";
+import * as LocAR from "locar";
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -17,6 +17,7 @@ window.addEventListener("resize", (e) => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
 });
+
 const box = new THREE.BoxGeometry(2, 2, 2);
 const cube = new THREE.Mesh(
   box,
@@ -26,7 +27,7 @@ const cube = new THREE.Mesh(
 const locar = new LocAR.LocationBased(scene, camera);
 const cam = new LocAR.WebcamRenderer(renderer);
 
-locar.fakeGps(-0.72, 51.05);
+locar.startGps();
 locar.add(cube, -0.72, 51.0501);
 
 renderer.setAnimationLoop(animate);
