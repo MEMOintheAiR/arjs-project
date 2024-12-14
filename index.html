@@ -1,55 +1,71 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AR.js A-Frame Location-based</title>
-    <!-- <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <title>AR.js A-Frame</title>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <!-- Assumes AR.js build is in the 'AR.js' directory -->
     <script
       type="text/javascript"
-      src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/three.js/build/ar-threex-location-only.js"
+      src="/src/ar-threex-location-only.js"
     ></script>
-    <script
-      type="text/javascript"
-      src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js"
-    ></script> -->
-    <script type="module" src="/src/main.js"></script>
-    <script>
-      if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition((position) => {
-          console.log(position.coords);
-          alert(
-            "유저번호" +
-              window.userId +
-              "\n위도" +
-              position.coords.latitude +
-              "\n경도" +
-              position.coords.longitude
-          );
-        });
-      } else {
-        console.log("위치사용");
-      }
-    </script>
+    <script type="text/javascript" src="/src/aframe-ar.js"></script>
   </head>
   <body>
-    <!-- <a-scene
+    <!-- 
+This is using a simulated location. If testing on a mobile device, remove the 
+'simulateLatitude' and 'simulateLongitude' properties from 'gps-new-camera' and
+change the 'latitude' and 'longitude' properties to a location around 0.001 
+degrees from your real location.
+-->
+    <a-scene
       vr-mode-ui="enabled: false"
       arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false"
       renderer="antialias: true; alpha: true"
     >
       <a-camera
-        id="camera1"
-        look-controls-enabled="false"
-        arjs-device-orientation-controls="smoothingFactor: 0.1"
-        gps-new-camera="gpsMinDistance: 5"
-      >
-      </a-camera>
-      <a-box
-        color="red"
-        gps-new-entity-place="latitude: 37.5077756; longitude: 127.06157"
-        depth="10"
-        height="10"
-        width="10"
-      ></a-box>
-    </a-scene> -->
+        gps-new-camera="gpsMinDistance: 5; simulateLatitude: 51.049; simulateLongitude: -0.723"
+      ></a-camera>
+      <a-entity
+        material="color: red"
+        geometry="primitive: box"
+        gps-new-entity-place="latitude: 51.05; longitude: -0.723"
+        scale="10 10 10"
+      ></a-entity>
+      <a-entity
+        material="color: yellow"
+        geometry="primitive: box"
+        gps-new-entity-place="latitude: 51.048; longitude: -0.723"
+        scale="10 10 10"
+      ></a-entity>
+      <a-entity
+        material="color: blue"
+        geometry="primitive: box"
+        gps-new-entity-place="latitude: 51.049; longitude: -0.724"
+        scale="10 10 10"
+      ></a-entity>
+      <a-entity
+        material="color: green"
+        geometry="primitive: box"
+        gps-new-entity-place="latitude: 51.049; longitude: -0.722"
+        scale="10 10 10"
+      ></a-entity>
+    </a-scene>
   </body>
 </html>
+<!-- <script>
+  if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log(position.coords);
+      console.log(
+        "유저번호" +
+          window.userId +
+          "\n위도" +
+          position.coords.latitude +
+          "\n경도" +
+          position.coords.longitude
+      );
+    });
+  } else {
+    console.log("위치사용");
+  }
+</script> -->
